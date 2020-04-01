@@ -10,6 +10,7 @@ const app = express();
 // "hey application, I want to somehow authenticate my users with Google"
 // inside the constructor, we're going to pass in some configuration that tells GoogleStrategy how to authenticate users inside of the application
 passport.use(
+    // GoogleStrategy has an internal identified of 'google'
     new GoogleStrategy(
         {
             clientID: keys.googleClientID,
@@ -21,6 +22,15 @@ passport.use(
         }
     )
 );
+
+app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })
+);
+
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
