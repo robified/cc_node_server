@@ -5,10 +5,19 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+// we have to define the serializeUser and deserializeUser function
 // what user is this? It's the same one from when we either have an existingUser or a newly created user
+// it is a mongoose user model instance
 passport.serializeUser((user, done) => {
     // done takes 2 arugements, 1) error object, 2) user.id is a short cut to the record _id
     done(null, user.id);
+});
+
+// now we're doing the exact opposite and we're turning the id into a mongoose model instance
+passport.deserializeUser((id, done) => {
+    User.findById(id).then(user => {
+        done(null, user);
+    });
 });
 
 passport.use(
