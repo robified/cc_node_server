@@ -5,6 +5,12 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+// what user is this? It's the same one from when we either have an existingUser or a newly created user
+passport.serializeUser((user, done) => {
+    // done takes 2 arugements, 1) error object, 2) user.id is a short cut to the record _id
+    done(null, user.id);
+});
+
 passport.use(
     new GoogleStrategy(
         {
@@ -19,10 +25,14 @@ passport.use(
 
             User.findOne({ googleId: profile.id }).then(existingUser => {
                 if (existingUser) {
-                    // we already have a recor with the given profile ID
+                    // we already have a record with the given profile ID
+                    // done takes 2 arugements, 1) error, 2) found the user
+                    done(null, existingUser);
                 } else {
                     // we don't have a user record with this ID, make a new record
-                    new User({ googleId: profile.id }).save();
+                    new User({ googleId: profile.id })
+                        .save()
+                        .then(user => done(null, user));
                 }
             });
         }
