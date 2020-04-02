@@ -40,8 +40,14 @@ Concepts learned:
     - Testing authentication
     - Logging out users
     - Deeper dive on cookies
-
-
+- Dev vs Prod Environments
+    - Dev vs prod keys
+    - MongoDB atlas production setup and configuration again
+    - Generating production resources
+    - Determining environment
+    - Version control scheme
+    - Heroku env variables
+    - Fixing heroku proxy issues
 
 The Udemy course used throughout this repo
 -   https://www.udemy.com/course/node-with-react-fullstack-web-development/
