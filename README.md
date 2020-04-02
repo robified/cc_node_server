@@ -23,6 +23,24 @@ Concepts learned:
     - OAuth Callbacks
     - Access and Refresh Tokens
     - Nodemon Setup
+- Adding MongoDB
+    - Server structure refactor
+    - Theory of authentication
+    - Signing in users with OAuth
+    - Introduction to MongoDB
+    - MongoDB Atlas setup and configuration
+    - Connecting Mongoose to MongoDB
+    - Mongoose model classes
+    - Saving model instances
+    - Handling possible TokenError: bad request
+    - Mongoose queries
+    - Passport callbacks
+    - Encoding and deserialize users
+    - Enabling cookies
+    - Testing authentication
+    - Logging out users
+    - Deeper dive on cookies
+
 
 
 The Udemy course used throughout this repo
