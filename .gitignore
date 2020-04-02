@@ -108,4 +108,4 @@ __pycache__/
 *.cache
 *dist/
 
-keys.js
+dev.js
