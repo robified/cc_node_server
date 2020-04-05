@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+require('dotenv').config();
 const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(
         // how long can a cookie exist in the browser before it expires 30 days has to be passed in as miliseconds
         maxAge: 30 * 24 * 60 * 60 * 1000,
         // this will be used to encrypt our cookie, so people can't manually change the user is and fake being someone else
-        keys: [keys.cookieKey]
+        keys: [process.env.cookieKey]
     })
 );
 app.use(passport.initialize());
